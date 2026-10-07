@@ -1,0 +1,48 @@
+---
+title: "Printer shows E42 after a firmware update"
+description: "What to do when a printer shows error E42 straight after a firmware update."
+type: troubleshooting
+appliesTo: ["X200", "Firmware 3.x"]
+keywords: ["E42", "feed sensor fault", "paper feed error"]
+sources: ["2026-09-14-153000-printer-e42-after-update"]
+lastUpdated: "2026-09-14"
+---
+
+## Symptom
+
+What the tech or customer sees, in their words. Quote error codes and messages exactly, e.g. `E42 Feed sensor fault`.
+
+## Cause
+
+Why it happens, if the notes say. If they do not, say it is unknown.
+
+## Diagnosis
+
+Only when there is more than one branch to check.
+
+```mermaid
+flowchart TD
+  A["E42 on screen"] --> B{"Paper path clear?"}
+  B -- No --> C["Clear the jam, then restart"]
+  B -- Yes --> D{"Firmware 3.2?"}
+  D -- Yes --> E["Roll back to 3.1"]
+  D -- No --> F["Replace the feed sensor"]
+```
+
+## Resolution
+
+1. One action per step.
+2. Menu paths and buttons exactly as shown, e.g. **Settings > Service > Sensors**.
+3. What the tech should see when it has worked.
+
+<Callout type="warn">
+Anything that risks data loss, safety or customer downtime.
+</Callout>
+
+## If that does not work
+
+Who to escalate to and what to send them.
+
+## Related
+
+- [Roll back printer firmware](../procedures/roll-back-printer-firmware)

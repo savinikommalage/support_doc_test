@@ -1,0 +1,248 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* platned design system tokens, copied from the scic docs extract of @platned/ui */
+@import './ds-tokens.css';
+
+@theme {
+  --font-sans:
+    var(--font-roboto), Roboto, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji';
+  --font-mono:
+    var(--font-roboto-mono), 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --color-surface-bg: var(--surface-bg);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-line-structure: var(--line-structure);
+  --color-line-cta: var(--line-cta);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-links: var(--text-links);
+
+  /* named apart from the ds --color-background-* tokens so .dark overrides still win */
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-2-hover: var(--surface-2-hover);
+  --color-surface-brand: var(--surface-brand);
+  --color-surface-brand-hover: var(--surface-brand-hover);
+  --color-surface-brand-soft: var(--surface-brand-soft);
+  --color-surface-brand-soft-hover: var(--surface-brand-soft-hover);
+  --color-surface-neutral-soft: var(--surface-neutral-soft);
+  --color-surface-danger-soft: var(--surface-danger-soft);
+  --color-text-brand: var(--text-brand);
+  --color-text-on-brand: var(--text-on-brand);
+  --color-text-danger: var(--text-danger);
+  --color-line-brand-soft: var(--line-brand-soft);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-hover: var(--color-background-brand-hover);
+  --color-brand-accent-foreground: var(--brand-accent-foreground);
+
+  --color-badge-gray: var(--badge-gray-bg);
+  --color-badge-gray-fg: var(--badge-gray-text);
+  --color-badge-red: var(--badge-red-bg);
+  --color-badge-red-fg: var(--badge-red-text);
+  --color-badge-yellow: var(--badge-yellow-bg);
+  --color-badge-yellow-fg: var(--badge-yellow-text);
+  --color-badge-green: var(--badge-green-bg);
+  --color-badge-green-fg: var(--badge-green-text);
+  --color-badge-blue: var(--badge-blue-bg);
+  --color-badge-blue-fg: var(--badge-blue-text);
+
+  --text-body-tiny: var(--typography-body-size-tiny);
+  --text-body-xs: var(--typography-body-size-extra-small);
+  --text-body-sm: var(--typography-body-size-small);
+  --text-body: var(--typography-body-size-medium);
+  --text-body-lg: var(--typography-body-size-large);
+  --text-heading-sm: var(--typography-heading-size-small);
+  --text-heading: var(--typography-heading-size-base);
+  --text-heading-lg: var(--typography-heading-size-large);
+
+  --font-weight-regular: var(--typo-weight-regular);
+  --font-weight-medium: var(--typo-weight-medium);
+  --font-weight-semibold: var(--typo-weight-semibold);
+  --font-weight-bold: var(--typo-weight-bold);
+}
+
+/* every ds token on the right flips itself under .dark so no dark block is needed */
+:root {
+  --nav-primary-height: 60px;
+  --nav-secondary-height: 40px;
+
+  --surface-bg: var(--color-background-default-default);
+  --surface-1: var(--color-background-default-secondary);
+  --surface-2: var(--color-background-default-tertiary);
+
+  --line-cta: var(--color-border-brand-default);
+  --line-structure: var(--color-border-default-default);
+
+  --text-primary: var(--color-text-default-default);
+  --text-secondary: var(--color-text-default-secondary);
+  --text-tertiary: var(--color-text-default-tertiary);
+  --text-disabled: var(--color-text-disabled-default);
+  /* brand-default drops to brand-100 under .dark which is unreadable as link text */
+  --text-links: var(--color-text-brand-secondary);
+
+  --brand-accent: var(--color-background-brand-default);
+  --brand-accent-foreground: var(--color-text-brand-on-brand);
+
+  --surface-hover: var(--color-background-default-default-hover);
+  --surface-2-hover: var(--color-background-default-tertiary-hover);
+  --surface-brand: var(--color-background-brand-default);
+  --surface-brand-hover: var(--color-background-brand-hover);
+  --surface-brand-soft: var(--color-background-brand-tertiary);
+  --surface-brand-soft-hover: var(--color-background-brand-tertiary-hover);
+  --surface-neutral-soft: var(--color-background-neutral-tertiary);
+  --surface-danger-soft: var(--color-background-danger-tertiary);
+  --text-brand: var(--color-text-brand-default);
+  --text-on-brand: var(--color-text-brand-on-brand);
+  --text-danger: var(--color-text-danger-default);
+  --line-brand-soft: var(--color-border-brand-tertiary);
+
+  --radius: var(--size-radius-300);
+}
+
+:root,
+.dark {
+  --color-fd-background: var(--surface-1);
+  --color-fd-foreground: var(--text-primary);
+  --color-fd-muted: var(--surface-2);
+  --color-fd-muted-foreground: var(--text-tertiary);
+  --color-fd-card: var(--surface-bg);
+  --color-fd-card-foreground: var(--text-primary);
+  --color-fd-popover: var(--surface-bg);
+  --color-fd-popover-foreground: var(--text-primary);
+  --color-fd-border: var(--line-structure);
+  --color-fd-primary: var(--brand-accent);
+  --color-fd-primary-foreground: var(--brand-accent-foreground);
+  --color-fd-secondary: var(--surface-2);
+  --color-fd-secondary-foreground: var(--text-secondary);
+  --color-fd-accent: var(--color-background-default-default-hover);
+  --color-fd-accent-foreground: var(--text-primary);
+  --color-fd-ring: var(--brand-accent);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+body {
+  background-color: var(--surface-1);
+  color: var(--text-primary);
+  font-feature-settings:
+    'rlig' 1,
+    'calt' 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+}
+
+h1 {
+  font-weight: var(--typo-weight-bold);
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--typo-weight-semibold);
+}
+
+/* fumadocs reads --fd-nav-height for its sticky sidebar and content offsets */
+.docs-chrome {
+  --fd-nav-height: calc(var(--nav-primary-height) + var(--nav-secondary-height)) !important;
+}
+
+.docs-chrome-plain {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#nd-page article a {
+  color: var(--text-links);
+}
+
+#nd-sidebar {
+  background-color: var(--surface-1);
+  margin: 0.25rem;
+  border-radius: var(--radius);
+  border-inline-end: 1px solid var(--line-structure);
+  overflow: hidden;
+}
+
+/* padding-inline-start is left alone since fumadocs sets it inline per nesting depth */
+#nd-sidebar a[data-active],
+#nd-sidebar button[data-state] {
+  min-height: 2.75rem;
+  padding-block: 0.625rem;
+  padding-inline-end: 0.875rem;
+  border: 1px solid var(--color-border-default-default);
+  border-radius: var(--radius);
+  background-color: var(--color-background-default-default);
+  color: var(--color-text-default-secondary);
+  font-size: var(--typography-body-size-small);
+  font-weight: var(--typo-weight-regular);
+  line-height: 1.375;
+}
+
+#nd-sidebar a[data-active]:hover,
+#nd-sidebar button[data-state]:hover {
+  border-color: var(--color-border-brand-tertiary);
+  background-color: var(--color-background-brand-tertiary-hover);
+  color: var(--color-text-brand-default);
+}
+
+#nd-sidebar a[data-active='true'],
+#nd-sidebar a[data-active='true']:hover {
+  border-color: var(--color-background-brand-default);
+  background-color: var(--color-background-brand-default);
+  color: var(--color-text-brand-on-brand);
+}
+
+#nd-sidebar p {
+  font-size: var(--typography-body-size-tiny);
+  font-weight: var(--typo-weight-medium);
+  letter-spacing: 0.66px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+#nd-sidebar a[data-active] + a[data-active],
+#nd-sidebar a[data-active] + button[data-state],
+#nd-sidebar button[data-state] + a[data-active],
+#nd-sidebar button[data-state] + button[data-state],
+#nd-sidebar > div > div > a[data-active],
+#nd-sidebar > div > div > button[data-state] {
+  margin-top: 0.5rem;
+}
+
+.mermaid-diagram {
+  border: 1px solid var(--line-structure);
+  border-radius: var(--radius);
+  background-color: var(--surface-bg);
+  padding: 1rem;
+  margin-block: 1rem;
+  overflow-x: auto;
+}
+
+.mermaid-diagram svg {
+  display: block;
+  width: auto;
+  margin-inline: auto;
+  max-width: none;
+}

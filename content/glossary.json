@@ -1,0 +1,12 @@
+[
+  {
+    "id": "ifs",
+    "term": "IFS",
+    "definition": "The software company whose enterprise system the tickets are about. IFS (originally Industrial & Financial Systems) makes IFS Cloud, which covers enterprise resource planning (ERP), enterprise asset management (EAM) and field service management (FSM). \"IFS\" usually means the IFS system itself, for example the IFS screen or the IFS batch interface.",
+    "synonyms": ["IFS Cloud", "Industrial & Financial Systems"],
+    "categories": ["systems"],
+    "pages": ["/docs/reference/amer-ticket-templates", "/docs/procedures/ifs-support-user-crud", "/docs/procedures/ifs-support-production-deployment"],
+    "sources": ["2026-09-16-113525-amer-ticket-answering"],
+    "lastUpdated": "2026-09-22"
+  }
+]

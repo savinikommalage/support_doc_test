@@ -1,0 +1,160 @@
+---
+title: "IFS Support: handle a user CRUD request"
+description: "How to handle a user create, update or delete request for IFS, including approval and Syncromax case creation."
+type: procedure
+appliesTo: ["IFS", "Syncromax", "DISDT"]
+keywords: ["user CRUD", "DISDT approval", "access request", "Syncromax case", "L1", "L2", "create user", "delete user", "password recovery", "user access", "IFS user"]
+sources: ["2026-09-22-113621-ifs-support-l1-l2-process-user-crud-and-production"]
+lastUpdated: "2026-09-22"
+---
+
+## Purpose
+
+Handle inbound user CRUD requests (create, update, delete) for [IFS](/docs/glossary#ifs). Every request needs DISDT approval unless the sender is already from DISDT, and every request needs a Syncromax case.
+
+<Callout type="warn" title="To confirm">
+What is DISDT? The notes use it as a team name that approves user access requests (e.g. "DISDT-IFS"), but do not define the abbreviation.
+</Callout>
+
+<Callout type="warn" title="To confirm">
+What is Syncromax? The notes use it as the case management system, but do not define it or confirm whether it is the same system used across all teams.
+</Callout>
+
+## Before you start
+
+- You need access to the VDI environment at `https://vdi.se.com.sa` for access-related requests.
+- Have Syncromax open and ready to create a case.
+- Document every email you receive — nothing is handled off the record.
+
+## Steps
+
+<Steps>
+<Step>
+
+### Check whether DISDT approval is needed
+
+Look at who sent the request.
+
+- **Sender is from DISDT** → no approval email needed, skip to step 2.
+- **Sender is not from DISDT** → open a new email addressed to `DISDT-IFS` and send the approval request below.
+
+![Approval request email template addressed to DISDT-IFS team](/kb/ifs-support-user-crud/user-crud-approval-email.png)
+
+```
+To: DISDT-IFS
+Subject: [describe the user change, e.g. "Provide Access – [First name Last name]"]
+
+Dear @DISDT-IFS Team,
+
+Please provide approval for the below users to give the relevant
+access permissions.
+
+Thanks and regards,
+[Your name]
+```
+
+</Step>
+<Step>
+
+### Acknowledge the original requester
+
+While waiting for DISDT approval (or straight away if no approval is needed), reply-all to the original email. Always address the person by name — use `@` or type their first name.
+
+![Acknowledgement reply email template](/kb/ifs-support-user-crud/user-crud-acknowledgement-email.png)
+
+```
+Dear [Name],
+
+We have received your request and we will get back to you soon.
+
+Thanks with regards,
+[Your name]
+[add the Syncromax case ID here after step 3]
+```
+
+</Step>
+<Step>
+
+### Create the case in Syncromax
+
+Open a new case and fill in the fields below.
+
+![Syncromax Case Detail form showing all standard fields for a user CRUD case](/kb/ifs-support-user-crud/syncromax-case-detail.jpeg)
+
+| Field | Value |
+|---|---|
+| Title | `[Action] / [Requester first name] / [HH:MM] / [YYYY.MM.DD]` |
+| Category | Service Request |
+| Sub Category | Other |
+| Product | IFS |
+| Priority | 4 – Low |
+| Agreement Description | Support |
+| Service Agreement ID | 1471 |
+| Owning Organization | DEFAULT |
+
+**Title example:** `Provide Access / [First name] / 10:23 / 2026.09.03`
+
+Go back to the acknowledgement email you sent in step 2 and add the case ID at the end.
+
+</Step>
+<Step>
+
+### Dispatch the case
+
+<Tabs items={["Internal", "Axcenze Team"]}>
+<Tab value="Internal">
+
+Set **Priority 4 – Low** and dispatch to Internal.
+
+![Priority dropdown for internal cases: 4 Low](/kb/ifs-support-user-crud/priority-internal.png)
+
+| Code | Meaning |
+|---|---|
+| 2 | A security vulnerability of non-critical impact |
+| 3 | Routine |
+| 4 | Low |
+
+</Tab>
+<Tab value="Axcenze Team">
+
+Set **Priority 3 – Moderate** and dispatch to the Axcenze Team. The system assigns it to someone automatically — follow up from the case view.
+
+![Priority dropdown for Axcenze team cases: 3 Moderate](/kb/ifs-support-user-crud/priority-axcenze.png)
+
+| Code | Meaning |
+|---|---|
+| 2 | Moderately time critical or with deadline at risk |
+| 2 | A security vulnerability of non-critical impact |
+| 3 | Moderate |
+
+</Tab>
+</Tabs>
+
+<Callout type="warn" title="To confirm">
+What is the Axcenze Team? The notes dispatch some cases to them but do not define who they are or when to choose them over Internal.
+</Callout>
+
+Add a contact note on the case: `Assigned on [date]`.
+
+Update the Excel tracking sheet with the case details.
+
+</Step>
+<Step>
+
+### After DISDT approves
+
+1. Reply-all to the email chain — mention the approver by name with `@` or their first name.
+2. Confirm the case ID is included at the end of the email.
+
+</Step>
+</Steps>
+
+## Check it worked
+
+- Syncromax shows the case as **Assigned** with the correct priority and dispatch.
+- The original requester has received an acknowledgement with the case ID.
+- The Excel tracking sheet is updated.
+
+## Related
+
+- [IFS Support: handle a production deployment request](./ifs-support-production-deployment)

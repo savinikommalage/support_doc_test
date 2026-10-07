@@ -1,0 +1,114 @@
+---
+title: "AMER ticket response templates"
+description: "Standard email reply templates, scripts and closure phrases for common AMER IT support ticket actions."
+type: reference
+appliesTo: ["AMER", "IFS"]
+keywords: ["AMER", "ticket templates", "password reset", "mobile license", "failed access", "ticket closure", "IFS", "DISDT", "batch close", "response templates", "ticket answering", "user ID request", "task ID request"]
+sources: ["2026-09-16-113525-amer-ticket-answering"]
+lastUpdated: "2026-09-16"
+---
+
+## Overview
+
+Copy-paste templates and scripts for the most common AMER IT support ticket actions. Replace bracketed placeholders with the actual values before sending or running.
+
+<Callout type="warn" title="To confirm">
+Does "AMER" refer to a specific team, region, or system name? Clarifying this would help set the `appliesTo` field accurately and ensure the right audience finds this page.
+</Callout>
+
+## Email reply templates
+
+### Password reset confirmation
+
+Send after completing a password reset for a user.
+
+> Dear User,
+>
+> Your password reset has been completed successfully.
+>
+> New Password: [new password]
+>
+> Kindly try to log in using the above password and confirm back to us once you have successfully logged in.
+>
+> Best regards,\
+> IT Support Team
+
+### Request for User ID
+
+Send when a ticket does not include the user's User ID.
+
+> Dear User,
+>
+> Kindly help us with the User ID so that we can proceed with necessary support and assistance.
+>
+> Best regards,\
+> IT Support Team
+
+### Request for Task ID
+
+Send when a ticket does not include the relevant Task ID.
+
+> Dear User,
+>
+> Kindly help us with the Task ID so that we can proceed with necessary support and assistance.
+>
+> Best regards,\
+> IT Support Team
+
+### Mobile license approval request
+
+Send to the DISDT team to request approval for a mobile license assignment.
+
+> Dear DISDT Team,
+>
+> Kindly provide your approval to assign the Mobile license to user ID: [user ID]
+>
+> Best regards,\
+> IT Support Team
+
+## Scripts
+
+### Close a task (batch update)
+
+Run this in the IFS batch interface to set a task to `CLOSED`. Replace `[task ID]` with the actual task ID.
+
+```xml
+<perform_batch>
+  <update_task>
+    <task>
+      <task_id>[task ID]</task_id>
+      <task_status>CLOSED</task_status>
+      <update/>
+    </task>
+  </update_task>
+</perform_batch>
+```
+
+### Reset failed access count
+
+Run this SQL to clear the failed login counter for a user account. Replace `[person ID]` with the person's `person_id` from the system.
+
+<Callout type="warn">
+This directly modifies the database. Confirm you have the correct `person_id` before running.
+</Callout>
+
+```sql
+UPDATE person
+SET num_failed_access = 0
+WHERE person_id = '[person ID]';
+```
+
+## Ticket closure phrases
+
+Standard one-line phrases for closing resolved tickets.
+
+| Situation | Closure text |
+| --- | --- |
+| General confirmation | The system is stable and functioning as expected; therefore, this ticket will be closed. |
+| Lobby counters working | The lobby counters are loading successfully; hence, this ticket will be closed. |
+| IFS screen loading | The IFS screen loads successfully when the lobby elements are clicked; hence, this ticket will be closed. |
+| Tasks loading | The Tasks are loading successfully; hence, this ticket will be closed. |
+
+## Related
+
+- [Reference](../reference)
